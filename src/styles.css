@@ -2,3 +2,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root{
+  --gris: #666766;
+  --gris-letra: #767677;
+  --celeste-light: #e3f4fe;
+  --celeste: #009cff;
+}

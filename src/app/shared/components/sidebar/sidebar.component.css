@@ -1,7 +1,7 @@
 :host {
   display: block;
 }
-.active{
+.active {
   background-color: white;
-  color: black;
+  color: var(--gris-letra);
 }

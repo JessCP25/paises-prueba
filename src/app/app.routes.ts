@@ -5,7 +5,7 @@ import Vista2PageComponent from './paises/pages/vista2-page/vista2-page.componen
 
 export const routes: Routes = [
     {
-        path: 'home',
+        path: '',
         loadComponent: () => import('./paises/pages/home-page/home-page.component')
     },
     {
@@ -18,11 +18,6 @@ export const routes: Routes = [
     },
     {
         path: '**',
-        redirectTo: 'home'
-    },
-    {
-      path: '',
-      redirectTo: '/home',
-      pathMatch: 'full'
-    } 
+        redirectTo: ''
+    }
 ];
