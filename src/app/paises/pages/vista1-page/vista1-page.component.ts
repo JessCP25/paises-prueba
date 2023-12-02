@@ -10,4 +10,4 @@ import { Component } from '@angular/core';
   templateUrl: './vista1-page.component.html',
   styleUrl: './vista1-page.component.css',
 })
-export class Vista1PageComponent { }
+export default class Vista1PageComponent { }
