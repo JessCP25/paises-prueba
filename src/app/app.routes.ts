@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { HomePageComponent } from './pages/home-page/home-page.component';
-import { Vista1PageComponent } from './pages/vista1-page/vista1-page.component';
-import { Vista2PageComponent } from './pages/vista2-page/vista2-page.component';
+import { HomePageComponent } from './paises/pages/home-page/home-page.component';
+import { Vista1PageComponent } from './paises/pages/vista1-page/vista1-page.component';
+import { Vista2PageComponent } from './paises/pages/vista2-page/vista2-page.component';
 
 export const routes: Routes = [
     {
