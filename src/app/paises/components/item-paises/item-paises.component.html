@@ -1,4 +1,4 @@
-<div (click)="mostrarPais(pais.code)" class="bg-white rounded-3xl shadow-lg pointer">
+<div (click)="mostrarPais(pais.code)" [class.active]="showDetalle" class="card bg-white rounded-3xl shadow-lg pointer">
   <img class="w-full h-[200px] object-cover rounded-t-3xl" [src]="pais.imagen" [alt]="pais.name">
   <div class="flex">
     <p> {{pais.emoji}} </p>
@@ -8,3 +8,4 @@
     </div>
   </div>
 </div>
+<detalle-pais (show)="toogleDetalle()" *ngIf="showDetalle" [paisItem]="paisItem"></detalle-pais>

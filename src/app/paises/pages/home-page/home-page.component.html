@@ -2,10 +2,9 @@
   <shared-buscador (onSearch)="buscarPais($event)" (onSearchContinente)="buscarContinente($event)" [continentes]="continentes" class="w-[65%]"></shared-buscador>
   <div class="grid-paises w-full">
     @if(paises.length > 0){
-      <paises-item (paisItem)="mostrarPais($event)" [pais]="pais" *ngFor="let pais of paises" class="w-full max-w-[350px]"></paises-item>
+      <paises-item [pais]="pais" *ngFor="let pais of paises" class="w-full max-w-[350px]"></paises-item>
     }@else{
       <p>No se encontraron resultados</p>
     }
   </div>
 </div>
-<detalle-pais [paisItem]="paisItem"></detalle-pais>

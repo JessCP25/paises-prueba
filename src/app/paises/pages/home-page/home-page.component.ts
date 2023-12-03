@@ -80,12 +80,5 @@ export default class HomePageComponent implements OnInit {
     })
   }
 
-  mostrarPais(code: string){
-    this.paisesService.getPais(code)
-    .subscribe(result=>{
-      this.paisItem = result[0];
-      console.log(result);
-    })
-  }
 
 }

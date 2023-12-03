@@ -1,3 +1,13 @@
 :host {
   display: block;
 }
+.active{
+  background-color: var(--celeste);
+  color: white;
+}
+.active h1{
+  color: white;
+}
+.active p{
+  color: white;
+}
