@@ -38,7 +38,7 @@ export default class HomePageComponent implements OnInit {
     // })
     this.getContinentes();
     if (this.filtrosPais.continente?.length === 0) {
-      this.getPaises(this.filtrosPais.nombre || '');
+      this.getPaises(this.filtrosPais.nombre || "");
     } else {
       this.buscarContinente(this.filtrosPais.continente || []);
     }
