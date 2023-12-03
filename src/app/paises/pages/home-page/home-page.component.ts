@@ -3,12 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { BuscadorComponent } from '../../../shared/buscador/buscador.component';
 import { ItemPaisesComponent } from '../../components/item-paises/item-paises.component';
 import { PaisesService } from '../../../services/paises.service';
-import { Country } from '../../../interfaces/paises.interface';
-import { ImagenesService } from '../../../services/imagenes.service';
+import { Country, Pais } from '../../../interfaces/paises.interface';
 import { Continente } from '../../../interfaces/continentes.interface';
 import { ContinentesService } from '../../../services/continentes.service';
 import { FiltrosPaisService } from '../../../services/filtros-pais.service';
-import { Imagen } from '../../../interfaces/images.interface';
+import { DetallePaisComponent } from '../../components/detalle-pais/detalle-pais.component';
 
 @Component({
   selector: 'app-home-page',
@@ -16,14 +15,16 @@ import { Imagen } from '../../../interfaces/images.interface';
   imports: [
     CommonModule,
     BuscadorComponent,
-    ItemPaisesComponent
+    ItemPaisesComponent,
+    DetallePaisComponent
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css',
 })
 export default class HomePageComponent implements OnInit {
   paises: Country[] = [];
-  continentes: Continente[] = []
+  continentes: Continente[] = [];
+  paisItem!: Pais;
 
   constructor(
     private paisesService: PaisesService,
@@ -78,4 +79,13 @@ export default class HomePageComponent implements OnInit {
       console.log(result)
     })
   }
+
+  mostrarPais(code: string){
+    this.paisesService.getPais(code)
+    .subscribe(result=>{
+      this.paisItem = result[0];
+      console.log(result);
+    })
+  }
+
 }

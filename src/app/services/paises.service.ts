@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { forkJoin, map, mergeMap } from 'rxjs';
-import { DataCountries} from '../interfaces/paises.interface';
+import { DataCountries, PaisData} from '../interfaces/paises.interface';
 import { ImagenesService } from './imagenes.service';
 
 @Injectable({
@@ -19,6 +19,7 @@ export class PaisesService {
       query: gql`
       query GetCountriesByContinent($continentName: String!){
         countries(filter: { name: { regex: $continentName }}) {
+          code,
           name,
           emoji,
           continent{
@@ -50,6 +51,7 @@ export class PaisesService {
       query: gql`
       query GetCountriesByContinent($continentName: [String!], $nameCountry: String!) {
         countries(filter: { name: { regex:$nameCountry }, continent: { in: $continentName}}) {
+          code,
           name,
           emoji,
           continent{
@@ -73,6 +75,46 @@ export class PaisesService {
         });
         console.log(paises)
         return forkJoin(paises);
+      })
+    )
+  }
+
+  getPais(code: string){
+    return this.apollo.query<PaisData>({
+      query: gql`
+      query GetCountryByCode($codeCountry: String!){
+        countries(filter: { code: { eq: $codeCountry }}) {
+          name,
+          capital,
+          continent {
+            name
+          },
+          languages{
+            name
+          },
+          currencies,
+          emoji,
+          phones,
+          states{
+            name
+          }
+        }
+      }`,
+      variables: {
+        codeCountry: code
+      }
+    }).pipe(
+      mergeMap(result => {
+        const pais = result.data.countries.map(paisItem=>{
+          return this.imageService.searchImage(paisItem.name)
+          .pipe(
+            map(resultImagen=>{
+              return {...paisItem, imagen: resultImagen.hits[0]?.webformatURL || ''}
+            })
+          );
+        });
+        console.log(pais)
+        return forkJoin(pais);
       })
     )
   }

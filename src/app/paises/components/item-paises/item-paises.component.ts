@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { Country } from '../../../interfaces/paises.interface';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Country, Pais } from '../../../interfaces/paises.interface';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { PaisesService } from '../../../services/paises.service';
 
 @Component({
   selector: 'paises-item',
@@ -13,13 +14,14 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   styleUrl: './item-paises.component.css',
 })
 export class ItemPaisesComponent {
-
+  @Output() paisItem  = new EventEmitter<string>();
   @Input() pais!: Country;
 
-  constructor(private sanitizer: DomSanitizer){}
+  constructor(
+    private paisesService: PaisesService
+  ){}
 
-  emojiRender(emoji: string): SafeHtml{
-    const item = `<span>${emoji}</span>`;
-    return this.sanitizer.bypassSecurityTrustHtml(item);
+  mostrarPais(code: string){
+    this.paisItem.emit(code);
   }
 }
