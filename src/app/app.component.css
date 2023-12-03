@@ -1,0 +1,16 @@
+@media(max-width: 708px){
+  .desktop{
+    position: absolute;
+    left: -100%;
+    z-index: 5;
+  }
+  .desktop.active{
+    left: 0;
+  }
+  .mobile{
+    display: flex;
+  }
+  .icon{
+    display: block;
+  }
+}

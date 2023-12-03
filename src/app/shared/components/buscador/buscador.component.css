@@ -1,0 +1,8 @@
+:host {
+  display: block;
+}
+@media(max-width: 558px){
+  .icon{
+    display: none;
+  }
+}

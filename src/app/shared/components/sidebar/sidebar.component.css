@@ -5,3 +5,9 @@
   background-color: white;
   color: var(--gris-letra);
 }
+
+@media(max-width: 708px){
+  img{
+    display: none;
+  }
+}

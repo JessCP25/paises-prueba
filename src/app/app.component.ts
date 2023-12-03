@@ -11,5 +11,8 @@ import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
+  show = false;
+  toggleSidebar(){
+    this.show = !this.show;
+  }
 }

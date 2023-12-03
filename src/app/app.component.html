@@ -1,8 +1,20 @@
 <div class="w-full flex min-h-screen bg-[--celeste-light]">
-    <div class="w-[300px] bg-[--gris] min-h-screen">
+    <div [class.active]="show" class="desktop w-[300px] bg-[--gris] min-h-screen">
+      <div class="m-5 icon hidden">
+        <svg (click)="toggleSidebar()" class="m-5" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+        </svg>
+      </div>
         <shared-sidebar></shared-sidebar>
     </div>
     <div class="flex-1 w-full h-full p-5">
+      <div class="mobile justify-between hidden m-3">
+        <svg (click)="toggleSidebar()" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+        </svg>
+        <img class="w-[150px] mt-[-20px]" src="https://cdn.icon-icons.com/icons2/2699/PNG/512/elpais_logo_icon_171185.png" alt="Logo">
+
+      </div>
         <router-outlet></router-outlet>
     </div>
 </div>
