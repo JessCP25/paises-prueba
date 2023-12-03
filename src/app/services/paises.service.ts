@@ -14,18 +14,21 @@ export class PaisesService {
     private imageService: ImagenesService
   ) { }
 
-  getPaises(){
+  getPaises(name: string){
     return this.apollo.query<DataCountries>({
       query: gql`
-      query {
-        countries {
+      query GetCountriesByContinent($continentName: String!){
+        countries(filter: { name: { regex: $continentName }}) {
           name,
           emoji,
           continent{
             name
           }
         }
-      }`
+      }`,
+      variables: {
+        continentName: name
+      }
     }).pipe(
       mergeMap(result => {
         const paises = result.data.countries.map(pais=>{
@@ -42,11 +45,11 @@ export class PaisesService {
     )
   }
 
-  getPaisesByContinente(continente: string){
+  getPaisesByContinente(name: string, continente: string[]){
     return this.apollo.query<DataCountries>({
       query: gql`
-      query GetCountriesByContinent($continentName: String!) {
-        countries(filter: { continent: { eq: $continentName}}) {
+      query GetCountriesByContinent($continentName: [String!], $nameCountry: String!) {
+        countries(filter: { name: { regex:$nameCountry }, continent: { in: $continentName}}) {
           name,
           emoji,
           continent{
@@ -55,7 +58,8 @@ export class PaisesService {
         }
       }`,
       variables: {
-        continentName: continente
+        continentName: continente,
+        nameCountry: name
       }
     }).pipe(
       mergeMap(result => {

@@ -7,6 +7,8 @@ import { Country } from '../../../interfaces/paises.interface';
 import { ImagenesService } from '../../../services/imagenes.service';
 import { Continente } from '../../../interfaces/continentes.interface';
 import { ContinentesService } from '../../../services/continentes.service';
+import { FiltrosPaisService } from '../../../services/filtros-pais.service';
+import { Imagen } from '../../../interfaces/images.interface';
 
 @Component({
   selector: 'app-home-page',
@@ -21,31 +23,29 @@ import { ContinentesService } from '../../../services/continentes.service';
 })
 export default class HomePageComponent implements OnInit {
   paises: Country[] = [];
-  images: any;
-  paisesPrueba: Country[] = [];
   continentes: Continente[] = []
 
   constructor(
     private paisesService: PaisesService,
-    private imagenes: ImagenesService,
-    private continentesService: ContinentesService
+    private continentesService: ContinentesService,
+    private filtrosPais: FiltrosPaisService
   ){}
 
   ngOnInit(): void {
-    this.getPaises();
+
     // this.imagenes.searchImage('gato').subscribe(result=>{
     //   this.images = result;
     // })
     this.getContinentes();
-    this.paisesService.getPaisesByContinente('AS')
-    .subscribe(result=>{
-      this.paisesPrueba = result;
-      console.log(result)
-    })
+    if(this.filtrosPais.continente?.length === 0){
+      this.getPaises(this.filtrosPais.nombre||"");
+    }else{
+      this.buscarContinente(this.filtrosPais.continente || [])
+    }
   }
 
-  getPaises(){
-    this.paisesService.getPaises().subscribe(
+  getPaises(term: string){
+    this.paisesService.getPaises(term).subscribe(
       (result)=>{
         if(result){
           this.paises = result;
@@ -59,6 +59,23 @@ export default class HomePageComponent implements OnInit {
     this.continentesService.getContinentes()
     .subscribe(result=>{
       this.continentes = result
+    })
+  }
+
+  buscarPais(term: string){
+    this.filtrosPais.nombre = term;
+    if(this.filtrosPais.continente.length === 0){
+      this.getPaises(term);
+    }else{
+      this.buscarContinente(this.filtrosPais.continente);
+    }
+  }
+
+  buscarContinente(code: string[]){
+    this.paisesService.getPaisesByContinente(this.filtrosPais.nombre||'',code)
+    .subscribe(result=>{
+      this.paises= result;
+      console.log(result)
     })
   }
 }

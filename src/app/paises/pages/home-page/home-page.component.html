@@ -1,6 +1,10 @@
 <div class="flex items-center flex-col gap-5 justify-center w-full">
-  <shared-buscador [continentes]="continentes" class="w-[65%]"></shared-buscador>
+  <shared-buscador (onSearch)="buscarPais($event)" (onSearchContinente)="buscarContinente($event)" [continentes]="continentes" class="w-[65%]"></shared-buscador>
   <div class="grid-paises w-full">
-    <paises-item [pais]="pais" *ngFor="let pais of paises" class="w-full max-w-[350px]"></paises-item>
+    @if(paises.length > 0){
+      <paises-item [pais]="pais" *ngFor="let pais of paises" class="w-full max-w-[350px]"></paises-item>
+    }@else{
+      <p>No se encontraron resultados</p>
+    }
   </div>
 </div>
