@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Continente } from '../../interfaces/continentes.interface';
 
 @Component({
   selector: 'shared-buscador',
@@ -10,4 +11,6 @@ import { Component } from '@angular/core';
   templateUrl: './buscador.component.html',
   styleUrl: './buscador.component.css',
 })
-export class BuscadorComponent { }
+export class BuscadorComponent {
+  @Input() continentes: Continente[] = []
+}

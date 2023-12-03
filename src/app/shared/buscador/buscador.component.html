@@ -24,3 +24,17 @@
 </div>
 <!-- (keyup)="onKeyPress(txtInput.value)"
 [value]="busqueda" -->
+<div>
+  <div>
+    <h1>Filtrar por continentes</h1>
+    <p>Limpiar</p>
+  </div>
+  <div>
+    @for( continente of continentes; track continente.code) {
+      <div>
+        <img [src]="continente.imagen" alt="">
+        <p> {{continente.name}} </p>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="bg-white rounded-3xl shadow-lg">
+  <img class="w-full h-[200px] object-cover rounded-t-3xl" [src]="pais.imagen" [alt]="pais.name">
+  <div class="flex">
+    <p> {{pais.emoji}} </p>
+    <div class="p-4">
+      <h1 class="text-[--celeste] font-bold text-[20px]">{{pais.name}}</h1>
+      <p class="text-[--gris] text-[18px]"> {{pais.continent.name}} </p>
+    </div>
+  </div>
+</div>
