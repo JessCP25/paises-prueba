@@ -49,6 +49,7 @@ export class BuscadorComponent implements OnInit {
 
   resetFiltro() {
     this.filtrosPais.resetFiltro();
+    this.continentesBuscar = []
     this.onKeyPress(this.filtrosPais.nombre || '');
     this.show();
   }

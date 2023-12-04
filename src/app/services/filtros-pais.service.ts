@@ -38,7 +38,7 @@ export class FiltrosPaisService {
   updateFiltros(){
     const filtros = {
       ...(this.nombre !== '' && {nombre: this.nombre}),
-      ...(this.continente.length !== 0 && {continente: this.continente})
+      ...(this._continente.length !== 0 && {continente: this.continente})
     };
     Object.keys(filtros).length > 0
     ? this._filtrosPais.next(filtros)
