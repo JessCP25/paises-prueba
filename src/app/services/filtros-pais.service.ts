@@ -13,13 +13,13 @@ export class FiltrosPaisService {
     return this._filtrosPais;
   }
 
-  private _nombre: string | undefined;
+  private _nombre: string = "";
   private _continente: string[] = [];
 
   get nombre(): string | undefined {
     return this._nombre;
   }
-  set nombre(value: string | undefined) {
+  set nombre(value: string | "") {
     this._nombre = value;
   }
 
@@ -42,12 +42,16 @@ export class FiltrosPaisService {
     };
     Object.keys(filtros).length > 0
     ? this._filtrosPais.next(filtros)
-    : this._filtrosPais.next({});
+    : this._filtrosPais.next({
+      name: "",
+      continente: []
+    });
   }
 
   resetFiltro(){
     this._continente = [];
     this.updateFiltros()
   }
+
 
 }
