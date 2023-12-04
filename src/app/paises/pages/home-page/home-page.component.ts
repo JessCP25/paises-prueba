@@ -37,7 +37,7 @@ export default class HomePageComponent implements OnInit {
     //   this.images = result;
     // })
     this.getContinentes();
-    if (this.filtrosPais.continente?.length === 0) {
+    if (this.filtrosPais.continente.length === 0) {
       this.getPaises(this.filtrosPais.nombre || "");
     } else {
       this.buscarContinente(this.filtrosPais.continente || []);
@@ -70,7 +70,7 @@ export default class HomePageComponent implements OnInit {
 
   buscarContinente(code: string[]) {
     this.paisesService
-      .getPaisesByContinente(this.filtrosPais.nombre || '', code)
+      .getPaisesByContinente(this.filtrosPais.nombre || "", code)
       .subscribe((result) => {
         this.paises = result;
         console.log(result);
